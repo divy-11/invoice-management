@@ -97,4 +97,35 @@ app.delete('/:invoice_number', async (req, res) => {
     }
 });
 
+app.get("/", async (req, res) => {
+    const { page = 1, limit = 10 } = req.query; // Default page is 1 and limit is 10
+  
+    try {
+      // Convert page and limit to integers
+      const pageNumber = parseInt(page, 10);
+      const limitNumber = parseInt(limit, 10);
+  
+      // Calculate total number of invoices
+      const totalInvoices = await Invoice.countDocuments();
+  
+      // Fetch paginated invoices
+      const invoices = await Invoice.find()
+        .skip((pageNumber - 1) * limitNumber) // Skip documents based on page
+        .limit(limitNumber) // Limit results to the specified number
+        .sort({ date: -1 }); // Sort by date (newest first)
+  
+      res.status(200).json({
+        invoices,
+        totalPages: Math.ceil(totalInvoices / limitNumber), // Total number of pages
+        currentPage: pageNumber,
+        totalInvoices,
+      });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Server error" });
+    }
+  });
+
+
+
 module.exports = app;
