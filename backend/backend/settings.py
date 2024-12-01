@@ -78,13 +78,13 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'Invoice',  # MongoDB database name
-        'ENFORCE_SCHEMA': False,  # Set to False if you don't want schema enforcement
+        'NAME': 'Invoice',  
+        'ENFORCE_SCHEMA': False, 
         'CLIENT': {
-            'host': 'mongodb+srv://Admin:jZEOL6CqWnapaRou@cluster0.g8cch4b.mongodb.net/Invoice',  # MongoDB URI
-            'username': 'Admin',  # MongoDB username
-            'password': 'jZEOL6CqWnapaRou',  # MongoDB password
-            'authSource': 'admin',  # Authentication source
+            'host': 'mongodb+srv://Admin:jZEOL6CqWnapaRou@cluster0.g8cch4b.mongodb.net/Invoice', 
+            'username': 'Admin', 
+            'password': 'jZEOL6CqWnapaRou', 
+            'authSource': 'admin',
         }
     }
 }
