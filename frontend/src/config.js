@@ -1,1 +1,1 @@
-export const BACKEND_URL = "http://localhost:4040/api"
+export const BACKEND_URL = "https://backend-js-in3m.onrender.com/api"
