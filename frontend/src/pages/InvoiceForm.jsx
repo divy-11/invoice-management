@@ -11,7 +11,7 @@ export const InvoiceForm = () => {
     invoice_number: "",
     customer_name: "",
     date: "",
-    details: [{ description: "", quantity: 1, unit_price: 0 }],
+    details: [{ description: "", quantity: "", unit_price: "" }],
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -64,11 +64,35 @@ export const InvoiceForm = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-50">
-      <div className="max-w-3xl w-full p-8 bg-white rounded-lg shadow-lg">
-        <h1 className="text-3xl font-semibold text-center text-gray-800 mb-6">{id ? "Edit Invoice" : "New Invoice"}</h1>
+      <div className="relative max-w-3xl w-full p-8 bg-white rounded-lg shadow-lg">
+        <button
+          onClick={() => {id ? navigate(`/invoice/${id}`) : navigate("/")}}
+          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 focus:outline-none"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+
+        <h1 className="text-3xl font-semibold text-center text-gray-800 mb-6">
+          {id ? "Edit Invoice" : "New Invoice"}
+        </h1>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-1">
-            <label className="block text-sm font-medium text-gray-700">Invoice Number</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Invoice Number
+            </label>
             <input
               type="text"
               value={formData.invoice_number}
@@ -81,7 +105,9 @@ export const InvoiceForm = () => {
           </div>
 
           <div className="space-y-1">
-            <label className="block text-sm font-medium text-gray-700">Customer Name</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Customer Name
+            </label>
             <input
               type="text"
               value={formData.customer_name}
@@ -107,7 +133,9 @@ export const InvoiceForm = () => {
           </div>
 
           <div className="space-y-2">
-            <label className="block text-sm font-medium text-gray-700">Invoice Details</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Invoice Details
+            </label>
             {formData.details.map((detail, index) => (
               <div key={index} className="flex gap-4 mb-4">
                 <input
@@ -155,7 +183,7 @@ export const InvoiceForm = () => {
                   ...formData,
                   details: [
                     ...formData.details,
-                    { description: "", quantity: 1, unit_price: 0 },
+                    { description: "", quantity: "", unit_price: "" },
                   ],
                 })
               }
