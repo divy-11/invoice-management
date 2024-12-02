@@ -82,7 +82,7 @@ export const InvoiceList = () => {
           <tr>
             <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">#</th>
             <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Customer</th>
-            <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Date</th>
+            <th className="py-3 px-4 text-left text-sm font-medium text-gray-700 hidden sm:table-cell">Date</th>
             <th className="py-3 px-4 text-left text-sm font-medium text-gray-700 hidden sm:table-cell">Total</th>
             <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Actions</th>
           </tr>
@@ -92,7 +92,7 @@ export const InvoiceList = () => {
             <tr key={invoice.invoice_number} className="hover:bg-gray-50 transition duration-200">
               <td className="border-t px-4 py-2 text-sm text-gray-600">{invoice.invoice_number}</td>
               <td className="border-t px-4 py-2 text-sm text-gray-600">{invoice.customer_name}</td>
-              <td className="border-t px-4 py-2 text-sm text-gray-600">{invoice.date}</td>
+              <td className="border-t px-4 py-2 text-sm text-gray-600 hidden sm:table-cell">{invoice.date}</td>
               <td className="border-t px-4 py-2 text-sm text-gray-600 hidden sm:table-cell">${calculateTotalAmount(invoice.details)}</td>
               <td className="border-t px-4 py-2 flex flex-col sm:flex-row sm:space-x-2 space-y-2 sm:space-y-0">
                 <button
