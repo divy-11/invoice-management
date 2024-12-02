@@ -1,4 +1,3 @@
-// utils/validationSchemas.js
 import { z } from "zod";
 
 export const signUpSchema = z.object({

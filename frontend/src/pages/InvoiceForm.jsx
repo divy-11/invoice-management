@@ -67,7 +67,6 @@ export const InvoiceForm = () => {
       <div className="max-w-3xl w-full p-8 bg-white rounded-lg shadow-lg">
         <h1 className="text-3xl font-semibold text-center text-gray-800 mb-6">{id ? "Edit Invoice" : "New Invoice"}</h1>
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Invoice Number */}
           <div className="space-y-1">
             <label className="block text-sm font-medium text-gray-700">Invoice Number</label>
             <input
@@ -81,7 +80,6 @@ export const InvoiceForm = () => {
             />
           </div>
 
-          {/* Customer Name */}
           <div className="space-y-1">
             <label className="block text-sm font-medium text-gray-700">Customer Name</label>
             <input
@@ -95,7 +93,6 @@ export const InvoiceForm = () => {
             />
           </div>
 
-          {/* Date */}
           <div className="space-y-1">
             <label className="block text-sm font-medium text-gray-700">Date</label>
             <input
@@ -109,7 +106,6 @@ export const InvoiceForm = () => {
             />
           </div>
 
-          {/* Invoice Details */}
           <div className="space-y-2">
             <label className="block text-sm font-medium text-gray-700">Invoice Details</label>
             {formData.details.map((detail, index) => (
@@ -169,7 +165,6 @@ export const InvoiceForm = () => {
             </button>
           </div>
 
-          {/* Submit Button */}
           <button
             type="submit"
             className="w-full py-3 mt-6 bg-indigo-600 text-white font-semibold rounded-lg shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
