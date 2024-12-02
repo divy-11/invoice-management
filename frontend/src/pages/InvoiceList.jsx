@@ -56,8 +56,8 @@ export const InvoiceList = () => {
 
   if (loading) {
     return (
-      <div className="p-6">
-        <h1 className="text-3xl font-bold text-gray-800 mb-6">Invoice List</h1>
+      <div className="p-4">
+        <h1 className="text-2xl font-semibold mb-4 text-gray-800">Invoice List</h1>
         <Skeleton />
         <Skeleton />
         <Skeleton />
@@ -66,16 +66,16 @@ export const InvoiceList = () => {
   }
 
   if (error) {
-    return <div className="p-6 text-red-600">{error}</div>;
+    return <div className="p-4 text-red-500">{error}</div>;
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6 flex flex-col">
-      <div className="bg-white p-6 rounded-lg shadow-lg">
-        <div className="flex justify-between items-center mb-6 flex-wrap">
-          <h1 className="text-3xl font-bold text-gray-800">Invoices</h1>
+    <div className="min-h-screen bg-gray-100 p-6 flex flex-col justify-between">
+      <div className="bg-white p-6 rounded-lg shadow-md">
+        <div className="flex justify-between items-center mb-6 flex-wrap gap-4">
+          <h1 className="text-2xl font-semibold text-gray-800">Invoices</h1>
           <button
-            className="bg-indigo-600 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400"
             onClick={() => navigate('/invoice/new')}
           >
             + Add Invoice
@@ -83,7 +83,7 @@ export const InvoiceList = () => {
         </div>
 
         <div className="overflow-x-auto">
-          <table className="table-auto w-full bg-gray-50 border border-gray-200 rounded-lg shadow">
+          <table className="table-auto w-full bg-gray-50 border border-gray-200 rounded-lg">
             <thead className="bg-gray-200">
               <tr>
                 <th className="py-3 px-4 text-left text-sm font-semibold text-gray-700">#</th>
@@ -95,22 +95,22 @@ export const InvoiceList = () => {
             </thead>
             <tbody>
               {invoices.map((invoice) => (
-                <tr key={invoice.invoice_number} className="hover:bg-gray-100 transition duration-200">
+                <tr key={invoice.invoice_number} className="hover:bg-gray-100">
                   <td className="border-t px-4 py-3 text-sm text-gray-600">{invoice.invoice_number}</td>
                   <td className="border-t px-4 py-3 text-sm text-gray-600">{invoice.customer_name}</td>
                   <td className="border-t px-4 py-3 text-sm text-gray-600 hidden sm:table-cell">{new Date(invoice.date).toLocaleDateString("en-CA")}</td>
                   <td className="border-t px-4 py-3 text-sm text-gray-600 hidden sm:table-cell">
                     ${calculateTotalAmount(invoice)}
                   </td>
-                  <td className="border-t px-4 py-3 flex space-x-2">
+                  <td className="border-t px-4 py-3 flex flex-col sm:flex-row sm:space-x-2 space-y-2 sm:space-y-0">
                     <button
-                      className="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      className="bg-blue-500 text-white px-3 py-2 rounded-md text-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
                       onClick={() => navigate(`/invoice/${invoice.invoice_number}`)}
                     >
                       View
                     </button>
                     <button
-                      className="bg-red-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400"
+                      className="bg-red-500 text-white px-3 py-2 rounded-md text-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400"
                       onClick={() => {
                         setInvoiceToDelete(invoice);
                         setIsModalOpen(true);
@@ -126,18 +126,18 @@ export const InvoiceList = () => {
         </div>
       </div>
 
-      <div className="flex justify-between items-center mt-6">
+      <div className="flex justify-between items-center mt-6 flex-wrap gap-4">
         <button
           disabled={page === 1}
           onClick={() => setPage(page - 1)}
-          className="bg-gray-200 text-gray-600 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-300 disabled:opacity-50"
+          className="bg-gray-200 text-gray-600 px-4 py-2 rounded-md text-sm hover:bg-gray-300 disabled:opacity-50"
         >
           Previous
         </button>
         <span className="text-sm text-gray-600">Page {page}</span>
         <button
           onClick={() => setPage(page + 1)}
-          className="bg-gray-200 text-gray-600 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-300"
+          className="bg-gray-200 text-gray-600 px-4 py-2 rounded-md text-sm hover:bg-gray-300"
         >
           Next
         </button>

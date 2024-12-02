@@ -43,7 +43,6 @@ export const InvoiceView = () => {
     return "0.00";
   };
 
-
   if (loading) {
     return (
       <div className="p-4">
@@ -65,73 +64,83 @@ export const InvoiceView = () => {
   }
 
   return (
-    <div className="p-6 bg-gray-100 rounded-lg shadow-lg h-screen">
-      <div className="flex justify-between items-center m-4 mb-6">
-        <h1 className="text-2xl font-semibold text-gray-800">Invoice Details</h1>
+    <div className="p-4 bg-gray-100 min-h-screen">
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-6">
+        <h1 className="text-xl sm:text-2xl font-semibold text-gray-800">
+          Invoice Details
+        </h1>
         <button
           onClick={() => navigate('/')}
-          className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700"
+          className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 mt-4 sm:mt-0"
         >
           Go to Invoice List
         </button>
       </div>
 
-      <div className="bg-white my-6 mx-12 p-6 rounded-lg shadow-lg space-y-6">
-        <div className="flex items-center space-x-4">
-          <label htmlFor="invoice_number" className="w-1/4 font-medium text-gray-700">Invoice Number:</label>
-          <span id="invoice_number" className="w-3/4 text-gray-600">{invoice.invoice_number}</span>
+      <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg space-y-6 w-full max-w-screen-md lg:max-w-screen-lg mx-auto">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center lg:space-x-6">
+          <label htmlFor="invoice_number" className="font-medium text-gray-700 w-full lg:w-1/4">
+            Invoice Number:
+          </label>
+          <span id="invoice_number" className="text-gray-600 w-full lg:w-3/4">{invoice.invoice_number}</span>
         </div>
 
-        <div className="flex items-center space-x-4">
-          <label htmlFor="customer_name" className="w-1/4 font-medium text-gray-700">Customer Name:</label>
+        <div className="flex flex-col lg:flex-row items-start lg:items-center lg:space-x-6">
+          <label htmlFor="customer_name" className="font-medium text-gray-700 w-full lg:w-1/4">
+            Customer Name:
+          </label>
           <input
             id="customer_name"
             type="text"
-            className="w-3/4 p-2 border rounded-md border-gray-300 focus:border-indigo-500"
+            className="p-2 border rounded-md border-gray-300 focus:border-indigo-500 w-full lg:w-3/4"
             value={invoice.customer_name}
             disabled
           />
         </div>
 
-        <div className="flex items-center space-x-4">
-          <label htmlFor="date" className="w-1/4 font-medium text-gray-700">Date:</label>
+        <div className="flex flex-col lg:flex-row items-start lg:items-center lg:space-x-6">
+          <label htmlFor="date" className="font-medium text-gray-700 w-full lg:w-1/4">
+            Date:
+          </label>
           <input
             id="date"
             type="date"
-            className="w-3/4 p-2 border rounded-md border-gray-300 focus:border-indigo-500"
+            className="p-2 border rounded-md border-gray-300 focus:border-indigo-500 w-full lg:w-3/4"
             value={new Date(invoice.date).toLocaleDateString("en-CA")}
             disabled
           />
         </div>
 
-        <div className="flex items-center space-x-4">
-          <label htmlFor="total_amount" className="w-1/4 font-medium text-gray-700">Total Amount:</label>
-          <span id="total_amount" className="w-3/4 text-gray-600">${calculateTotalAmount()}</span>
+        <div className="flex flex-col lg:flex-row items-start lg:items-center lg:space-x-6">
+          <label htmlFor="total_amount" className="font-medium text-gray-700 w-full lg:w-1/4">
+            Total Amount:
+          </label>
+          <span id="total_amount" className="text-gray-600 w-full lg:w-3/4">${calculateTotalAmount()}</span>
         </div>
 
         <h3 className="font-semibold text-gray-700">Invoice Details:</h3>
-        <ul className="space-y-2">
+        <ul className="space-y-4">
           {invoice.details.map((item, idx) => (
-            <li key={idx} className="flex items-center space-x-4">
+            <li key={idx} className="flex items-center space-x-4 w-full">
               <input
                 type="text"
-                className="w-1/4 p-2 border rounded-md border-gray-300 focus:border-indigo-500"
+                className="p-2 border rounded-md border-gray-300 focus:border-indigo-500 w-1/4"
                 value={item.description}
                 disabled
               />
               <input
                 type="number"
-                className="w-1/4 p-2 border rounded-md border-gray-300 focus:border-indigo-500"
+                className="p-2 border rounded-md border-gray-300 focus:border-indigo-500 w-1/4"
                 value={formatDecimal(item.quantity)}
                 disabled
               />
               <input
                 type="number"
-                className="w-1/4 p-2 border rounded-md border-gray-300 focus:border-indigo-500"
+                className="p-2 border rounded-md border-gray-300 focus:border-indigo-500 w-1/4"
                 value={formatDecimal(item.unit_price)}
                 disabled
               />
-              <span className="w-1/4 text-gray-600">{formatDecimal(item.line_total)}</span>
+              <span className="text-gray-600 w-1/4">{formatDecimal(item.line_total)}</span>
             </li>
           ))}
         </ul>
